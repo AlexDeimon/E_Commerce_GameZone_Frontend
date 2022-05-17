@@ -5,19 +5,19 @@
             <button class="btn btn-warning btn-crud" data-toggle="modal" data-target="#actualizarcliente"><span class="text">Actualizar</span><span class="icon"><i class="fas fa-edit"></i></span></button>
             <button class="btn btn-danger btn-crud" data-toggle="modal" data-target="#eliminarcliente"><span class="text">Eliminar</span><span class="icon"><i class="fas fa-trash"></i></span></button>
             <div class="input-group mb-3" style="width: auto">
-                <input type="text" placeholder="ID cliente" required v-model="cliente.idCliente">
+                <input type="search" placeholder="ID cliente" required v-model="cliente.idCliente">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#buscarcliente" v-on:click="searchCliente"><i class="fas fa-search"></i></button>
                 </div>
             </div>
             <div class="input-group mb-3" style="width: auto">
-                <input type="text" placeholder="Cliente por ID carrito" required v-model="cliente.idCarrito">
+                <input type="search" placeholder="Cliente por ID carrito" required v-model="cliente.idCarrito">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#buscarclientexcarrito" v-on:click="searchClienteXCarrito"><i class="fas fa-search"></i></button>
                 </div>
             </div>
             <div class="input-group mb-3" style="width: auto">
-                <input type="text" placeholder="Carrito por ID cliente" required v-model="cliente.idCliente">
+                <input type="search" placeholder="Carrito por ID cliente" required v-model="cliente.idCliente">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#buscarcarrito" v-on:click="searchCarrito"><i class="fas fa-search"></i></button>
                 </div>
@@ -298,7 +298,7 @@
                         <form v-on:submit.prevent="updateClient">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="ID del cliente" required autocomplete="off" v-model="cliente.idCliente">
+                                    <input type="search" class="form-control" placeholder="ID del cliente" required autocomplete="off" v-model="cliente.idCliente">
                                     <div class="input-group-append">
                                         <button class="btn btn-warning" type="button"><i class="fas fa-search" v-on:click="searchCliente"></i></button>
                                     </div>

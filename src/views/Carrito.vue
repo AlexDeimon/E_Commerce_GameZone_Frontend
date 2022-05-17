@@ -6,7 +6,7 @@
             <button class="btn btn-success btn-crud" data-toggle="modal" data-target="#añadirproducto"><span class="text">Nuevo producto</span><span class="icon"><i class="fas fa-plus"></i></span></button>
             <button class="btn btn-danger btn-crud" data-toggle="modal" data-target="#removerproducto"><span class="text">Quitar producto</span><span class="icon"><i class="fas fa-times"></i></span></button>
             <div class="input-group mb-3" style="width: auto">
-                <input type="text" placeholder="ID del carrito" required autocomplete="off" v-model="carrito.id">
+                <input type="search" placeholder="ID del carrito" required autocomplete="off" v-model="carrito.id">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#buscarCarrito" v-on:click="searchCarrito"><i class="fas fa-search"></i></button>
                 </div>

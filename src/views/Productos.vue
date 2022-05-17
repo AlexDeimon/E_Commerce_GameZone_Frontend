@@ -5,13 +5,13 @@
             <button class="btn btn-warning btn-crud" data-toggle="modal" data-target="#actualizarproducto"><span class="text">Actualizar</span><span class="icon"><i class="fas fa-edit"></i></span></button>
             <button class="btn btn-danger btn-crud" data-toggle="modal" data-target="#eliminarproducto"><span class="text">Eliminar</span><span class="icon"><i class="fas fa-trash"></i></span></button>
             <div class="input-group mb-3" style="width: auto">
-                <input type="text" placeholder="Nombre del producto" required v-model="product.producto" >
+                <input type="search" placeholder="Nombre del producto" required v-model="product.producto" >
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#buscarproducto" v-on:click="searchProduct"><i class="fas fa-search"></i></button>
                 </div>
             </div>
             <div class="input-group mb-3" style="width: auto">
-                <input type="text" placeholder="Filtrar por categoría" required v-model="product.categoria">
+                <input type="search" placeholder="Filtrar por categoría" required v-model="product.categoria">
                 <div class="input-group-append">
                     <button class="btn btn-primary" v-on:click="productsByCategory"><i class="fas fa-search"></i></button>
                 </div>
@@ -142,7 +142,7 @@
                         <form v-on:submit.prevent="updateProduct">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Nombre del producto" required autocomplete="off" v-model="product.producto">
+                                    <input type="search" class="form-control" placeholder="Nombre del producto" required autocomplete="off" v-model="product.producto">
                                     <div class="input-group-append">
                                         <button class="btn btn-warning" type="button"><i class="fas fa-search" v-on:click="searchProduct"></i></button>
                                     </div>

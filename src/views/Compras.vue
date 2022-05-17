@@ -4,7 +4,7 @@
             <button class="btn btn-success btn-crud" data-toggle="modal" data-target="#crearcompra"><span class="text">Nueva</span><span class="icon"><i class="fas fa-dollar-sign"></i></span></button>
             <button class="btn btn-danger btn-crud" data-toggle="modal" data-target="#eliminarcompra"><span class="text">Eliminar</span><span class="icon"><i class="fas fa-trash"></i></span></button>
             <div class="input-group mb-3" style="width: auto">
-                <input type="text" placeholder="Compra por ID Cliente" required v-model="compra.idCliente">
+                <input type="search" placeholder="Compra por ID Cliente" required v-model="compra.idCliente">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#buscarCompra" v-on:click="searchCompra"><i class="fas fa-search"></i></button>
                 </div>
