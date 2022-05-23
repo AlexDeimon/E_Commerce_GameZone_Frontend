@@ -58,14 +58,14 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import Swal from 'sweetalert2';
 const firebaseConfig = {
-    apiKey: "AIzaSyCC4Iz4c3rLNuv35x9TVJbnBZa5SUytiqY",
-    authDomain: "proyecto-ing-web-f20d3.firebaseapp.com",
-    databaseURL: "https://proyecto-ing-web-f20d3-default-rtdb.firebaseio.com",
-    projectId: "proyecto-ing-web-f20d3",
-    storageBucket: "proyecto-ing-web-f20d3.appspot.com",
-    messagingSenderId: "89679068108",
-    appId: "1:89679068108:web:f9263a29f897ddda02fb69",
-    measurementId: "G-LTK890G826"
+    apiKey: "AIzaSyBmLPqr8cO6zKz5d1QSwdM9kEz39lF8kbg",
+    authDomain: "project-ing-web.firebaseapp.com",
+    databaseURL: "https://project-ing-web-default-rtdb.firebaseio.com",
+    projectId: "project-ing-web",
+    storageBucket: "project-ing-web.appspot.com",
+    messagingSenderId: "457873148937",
+    appId: "1:457873148937:web:8394be3a50345888ddbcd8",
+    measurementId: "G-0JCR01HL96"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -97,9 +97,7 @@ export default defineComponent({
                     icon: 'warning',
                     text: 'Tu contraseña debe tener al menos una letra mayúscula y mínimo 8 caracteres alfanuméricos'
                 });
-            }
-            
-            if(this.errorContraseña == "" && this.errorEmail == ""){
+            }else {
                 //* Authenticate the User
                 createUserWithEmailAndPassword(auth, this.singUp.email, this.singUp.password).then(() => {
                     Swal.fire({
