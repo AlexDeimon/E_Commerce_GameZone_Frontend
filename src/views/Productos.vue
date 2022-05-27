@@ -82,7 +82,7 @@
                         </button>
                     </div>
                     <div class="modal-body d-flex justify-content-center form_container">
-                        <form v-on:submit.prevent="createProduct">
+                        <form v-on:submit.prevent="createProduct" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="input-group mb-3">
                                     <div class="input-group-append">
@@ -121,6 +121,18 @@
                                         <span class="input-group-text input-group-text-2"><i class="fas fa-tasks"></i></span>
                                     </div>
                                     <input type="text" class="form-control" placeholder="Categoría" required autocomplete="off" v-model="product.categoria">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group mb-3 dropZone2" id="dropZone">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text input-group-text-2"><i class="fas fa-file-image"></i></span>
+                                    </div>
+                                    <input type="file" class="form-control hide" id="file" required accept="image/*" v-on:change="clickImagen($event)">
+                                    <div class="div" v-on:click="clickDropZone" v-on:dragover.prevent="dragOver" v-on:dragleave.prevent="dragLeave" v-on:drop.prevent="drop($event)">
+                                        <img src="https://img.icons8.com/ios-glyphs/32/28a745/upload--v1.png" alt="icon file">
+                                        <p>Arrastre la imagen o de click para subir la imagen</p> 
+                                    </div>
                                 </div>
                             </div>
                             <button class="btn btn-success" type="submit">Agregar</button>
@@ -231,9 +243,11 @@
         </div>
   </div>
 </template>
-<script lang="ts">
+<script>
 import axios from 'axios';
 import { defineComponent } from 'vue';
+import { storage } from '../firebase';
+import { ref,  uploadBytes, deleteObject  } from 'firebase/storage'
 import Swal from 'sweetalert2';
 export default defineComponent({
     name: "Productos",
@@ -248,7 +262,8 @@ export default defineComponent({
                 categoria: "",
                 cantidadCarrito: 0
             },
-            productList: []
+            productList: [],
+            imagen: null
         }
     },
     methods: {
@@ -260,6 +275,31 @@ export default defineComponent({
             this.product.stock = ""
             this.product.categoria = ""
             this.product.cantidadCarrito = 0
+            this.imagen = null
+            const dropZone = document.getElementById('dropZone');
+            dropZone.classList.remove('drop-zone--active');
+        },
+        clickImagen(e){
+            this.imagen = e.target.files[0]
+            console.log(this.imagen)
+        },
+        clickDropZone(){
+            const fileInput = document.getElementById('file');
+            fileInput.click();
+        },
+        dragOver(){
+            const dropZone = document.getElementById('dropZone');
+            dropZone.classList.add('drop-zone--active');
+        }, 
+        dragLeave(){
+            const dropZone = document.getElementById('dropZone');
+            dropZone.classList.remove('drop-zone--active');
+        },
+        drop(e){
+            const fileInput = document.getElementById('file');
+            fileInput.files = e.dataTransfer.files;
+            this.imagen = fileInput.files[0];
+            console.log(this.imagen);
         },
         createProduct(){
             var product = this.product;
@@ -267,6 +307,8 @@ export default defineComponent({
             axios.post("https://gamezone-e-commerce-backend.herokuapp.com/agregarProducto", product).then((response) => {
                 this
                 console.log(response, product);
+                const refImg = ref(storage,'imagenes/'+this.product.id );
+                uploadBytes(refImg, this.imagen).then(e => console.log(e));
                 Swal.fire({
                     icon: 'success',
                     text: "Se ha añadido el producto " + product.producto,
@@ -314,14 +356,26 @@ export default defineComponent({
         },
         deleteProduct(){
             var product = this.product;
-            axios.delete('https://gamezone-e-commerce-backend.herokuapp.com/eliminarProducto/' + product.producto).then((response) => {
-                this
-                console.log(response);
-                Swal.fire({
-                    icon: 'success',
-                    text: 'Se ha eliminado el producto',
+            axios.get("https://gamezone-e-commerce-backend.herokuapp.com/verProducto/" + product.producto).then((response) => {
+                this.product = response.data;
+                const refImg = ref(storage,'imagenes/'+this.product.id );
+                deleteObject(refImg).then(e => console.log(e));
+                axios.delete('https://gamezone-e-commerce-backend.herokuapp.com/eliminarProducto/' + product.producto).then((response) => {
+                    this
+                    console.log(response);
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Se ha eliminado el producto',
+                    });
+                }).catch(function(error){
+                    console.log(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: error.response.data,
+                    });
                 });
-            }).catch(function(error){
+                }).catch(function(error){
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
@@ -356,3 +410,22 @@ export default defineComponent({
     }
 });
 </script>
+<style>
+.hide {
+    display: none;
+}
+.form-group .dropZone2 {
+    border: 2px dashed black;
+}
+.dropZone .div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.form-group .drop-zone--active {
+    border: 2px solid #28a745;
+    color: #28a745;
+}
+</style>
