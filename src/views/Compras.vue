@@ -152,14 +152,13 @@ export default defineComponent({
                 console.log(response, compra);
                  Swal.fire({
                     icon: 'success',
-                    text: "Se ha creado la compra con id: "+ response.data.id + " del cliente con id: "+ response.data.idCliente,
+                    title: "Se ha creado la compra con id: "+ response.data.id + " del cliente con id: "+ response.data.idCliente,
                 });
                 }).catch(function(error){
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -170,14 +169,13 @@ export default defineComponent({
                 console.log(response);
                  Swal.fire({
                     icon: 'success',
-                    text: 'Se ha eliminado la compra',
+                    title: 'Se ha eliminado la compra',
                 });
             }).catch(function(error){
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -190,8 +188,7 @@ export default defineComponent({
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -201,8 +198,7 @@ export default defineComponent({
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -212,8 +208,7 @@ export default defineComponent({
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         }

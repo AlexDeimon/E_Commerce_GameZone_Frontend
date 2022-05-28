@@ -446,14 +446,13 @@ export default defineComponent({
                 console.log(response, cliente);
                 Swal.fire({
                     icon: 'success',
-                    text:"Se ha creado el cliente "+cliente.nombre + " "+ cliente.apellidos,
+                    title:"Se ha creado el cliente "+cliente.nombre + " "+ cliente.apellidos,
                 });
                 }).catch(function(error){
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -466,8 +465,7 @@ export default defineComponent({
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -478,14 +476,13 @@ export default defineComponent({
                 console.log(response, cliente);
                 Swal.fire({
                     icon: 'success',
-                    text: 'Se ha actualizado el cliente',
+                    title: 'Se ha actualizado el cliente',
                 });
                 }).catch(function(error){
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -496,14 +493,13 @@ export default defineComponent({
                 console.log(response);
                  Swal.fire({
                     icon: 'success',
-                    text: 'Se ha eliminado el cliente',
+                    title: 'Se ha eliminado el cliente',
                 });
             }).catch(function(error){
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -516,8 +512,7 @@ export default defineComponent({
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -531,8 +526,7 @@ export default defineComponent({
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -542,8 +536,7 @@ export default defineComponent({
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         }

@@ -76,13 +76,13 @@ export default defineComponent({
             if(this.singUp.email.length == 0 || !this.singUp.email.includes('@') || !this.singUp.email.includes('mail') || !this.singUp.email.includes('.co')){
                 Swal.fire({
                     icon: 'warning',
-                    text: 'El correo que intentas registrar es invalido'
+                    title: 'El correo que intentas registrar es invalido'
                 });
             }
             else if(this.singUp.password.length < 8 || (!this.singUp.password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/))) {
                 Swal.fire({
                     icon: 'warning',
-                    text: 'Tu contraseña debe tener al menos una letra mayúscula y mínimo 8 caracteres alfanuméricos'
+                    title: 'Tu contraseña debe tener al menos una letra mayúscula y mínimo 8 caracteres alfanuméricos'
                 });
             }else {
                 //* Authenticate the User
@@ -94,8 +94,7 @@ export default defineComponent({
                 }).catch(() => {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
-                        text: 'El correo que intentas registrar ya existe!'
+                        title: 'El correo que intentas registrar ya existe!'
                     });
                 });
             }
@@ -110,8 +109,7 @@ export default defineComponent({
             }).catch(() => {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: 'Parece que tu correo no está registrado o te has equivocado en tu contraseña!'
+                    title: 'Parece que tu correo no está registrado o te has equivocado en tu contraseña!'
                 });
             });
         }

@@ -230,14 +230,13 @@ export default defineComponent({
                 console.log(response, carrito);
                 Swal.fire({
                     icon: 'success',
-                    text: "Se ha creado el carrito con Id " + response.data.id,
+                    title: "Se ha creado el carrito con Id " + response.data.id,
                 });
             }).catch(function(error) {
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -248,14 +247,13 @@ export default defineComponent({
                 console.log(response);
                 Swal.fire({
                     icon: 'success',
-                    text: 'Se ha eliminado el carrito',
+                    title: 'Se ha eliminado el carrito',
                 });
             }).catch(function(error) {
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -267,14 +265,13 @@ export default defineComponent({
                 console.log(response, carrito);
                 Swal.fire({
                     icon: 'success',
-                    text: "Se han añadido " + this.cantidadProducto + " " + product.producto + " al carrito " + carrito.id,
+                    title: "Se han añadido " + this.cantidadProducto + " " + product.producto + " al carrito " + carrito.id,
                 });
             }).catch(function(error) {
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -286,14 +283,13 @@ export default defineComponent({
                 console.log(response, carrito);
                 Swal.fire({
                     icon: 'success',
-                    text: "Se han borrado todos los " + product.producto + " del carrito " + carrito.id,
+                    title: "Se han borrado todos los " + product.producto + " del carrito " + carrito.id,
                 });
             }).catch(function(error) {
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -306,8 +302,7 @@ export default defineComponent({
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -317,8 +312,7 @@ export default defineComponent({
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         }

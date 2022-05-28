@@ -67,6 +67,9 @@
                                 </div>
                                 <input type="text" class="form-control" placeholder="Categoría" readonly v-model="product.categoria">
                             </div>
+                            <div class="form-group">
+                                <img id="imgProduct" alt="Imagen producto" :src="imagenDesc">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,8 +131,8 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text input-group-text-2"><i class="fas fa-file-image"></i></span>
                                     </div>
-                                    <input type="file" class="form-control hide" id="file" required accept="image/*" v-on:change="clickImagen($event)">
                                     <div class="div" v-on:click="clickDropZone" v-on:dragover.prevent="dragOver" v-on:dragleave.prevent="dragLeave" v-on:drop.prevent="drop($event)">
+                                        <input type="file" class="form-control hide" id="file" required accept="image/*" v-on:change="clickImagen($event)">
                                         <img src="https://img.icons8.com/ios-glyphs/32/28a745/upload--v1.png" alt="icon file">
                                         <p>Arrastre la imagen o de click para subir la imagen</p> 
                                     </div>
@@ -247,7 +250,7 @@
 import axios from 'axios';
 import { defineComponent } from 'vue';
 import { storage } from '../firebase';
-import { ref,  uploadBytes, deleteObject  } from 'firebase/storage'
+import { ref,  uploadBytes, deleteObject, getDownloadURL } from 'firebase/storage'
 import Swal from 'sweetalert2';
 export default defineComponent({
     name: "Productos",
@@ -263,7 +266,8 @@ export default defineComponent({
                 cantidadCarrito: 0
             },
             productList: [],
-            imagen: null
+            imagen: null,
+            imagenDesc: null,
         }
     },
     methods: {
@@ -276,6 +280,7 @@ export default defineComponent({
             this.product.categoria = ""
             this.product.cantidadCarrito = 0
             this.imagen = null
+            this.imagenDesc = null
             const dropZone = document.getElementById('dropZone');
             dropZone.classList.remove('drop-zone--active');
         },
@@ -311,14 +316,13 @@ export default defineComponent({
                 uploadBytes(refImg, this.imagen).then(e => console.log(e));
                 Swal.fire({
                     icon: 'success',
-                    text: "Se ha añadido el producto " + product.producto,
+                    title: "Se ha añadido el producto " + product.producto,
                 });
             }).catch(function(error) {
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -326,13 +330,15 @@ export default defineComponent({
             var product = this.product;
             axios.get("https://gamezone-e-commerce-backend.herokuapp.com/verProducto/" + product.producto).then((response) => {
                 this.product = response.data;
+                getDownloadURL(ref(storage, 'imagenes/'+this.product.id)).then((url) => {
+                    this.imagenDesc = url;
+                });
                 console.log(response, product);
                 }).catch(function(error){
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -343,14 +349,13 @@ export default defineComponent({
                 console.log(response, product);
                 Swal.fire({
                     icon: 'success',
-                    text: 'Se ha actualizado el producto',
+                    title: 'Se ha actualizado el producto',
                 });
                 }).catch(function(error){
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -365,22 +370,21 @@ export default defineComponent({
                     console.log(response);
                     Swal.fire({
                         icon: 'success',
-                        text: 'Se ha eliminado el producto',
+                        title: 'Se ha eliminado el producto',
                     });
                 }).catch(function(error){
                     console.log(error);
                     Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
-                        text: error.response.data,
+
+                        title: error.response.data,
                     });
                 });
                 }).catch(function(error){
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -391,8 +395,7 @@ export default defineComponent({
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         },
@@ -402,8 +405,7 @@ export default defineComponent({
                 console.log(error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data,
+                    title: error.response.data,
                 });
             });
         }
@@ -412,7 +414,9 @@ export default defineComponent({
 </script>
 <style>
 .hide {
-    display: none;
+    display: block;
+    position: absolute;
+    z-index: -1;
 }
 .form-group .dropZone2 {
     border: 2px dashed black;
@@ -423,9 +427,15 @@ export default defineComponent({
     justify-content: center;
     text-align: center;
     align-items: center;
+    z-index: 10;
 }
 .form-group .drop-zone--active {
     border: 2px solid #28a745;
     color: #28a745;
+}
+.form-group #imgProduct {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 </style>
