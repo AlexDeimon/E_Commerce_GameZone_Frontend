@@ -11,7 +11,7 @@ export default defineComponent({
   name: "Logo",
 });
 </script>
-<style >
+<style>
 .titulo1 {
   margin: 0;
   text-align: center;

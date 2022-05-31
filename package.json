@@ -1,5 +1,5 @@
 {
-  "name": "e_commerce_frontend",
+  "name": "e_commerce",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,10 +10,9 @@
   "dependencies": {
     "axios": "^0.27.2",
     "core-js": "^3.6.5",
-    "express": "^4.18.1",
-    "firebase": "^9.8.1",
-    "serve-static": "^1.15.0",
+    "firebase": "^9.8.2",
     "vue": "^3.0.0",
+    "vue-loading-overlay": "^5.0.3",
     "vue-router": "^4.0.0-0",
     "vue-sweetalert2": "^5.0.5"
   },
