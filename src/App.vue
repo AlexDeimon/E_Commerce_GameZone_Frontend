@@ -40,21 +40,31 @@ main {
   vertical-align: center;
 }
 .header {
+  background-color: black;
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  background-color: black;
-  height: 90px;
+}
+.nav{
+  flex-wrap: nowrap;
 }
 .nav-menu {
-  margin-bottom: 0;
-  margin-right: 2%;
+  padding: 0;
+  margin: 1%;
+  font-size: large;
 }
 .nav-menu_button {
   border: 1px solid #E5E7E9;
   color: white;
   font-family: "Helvetica";
   background-color: red;
+}
+.link,
+.nav-menu_button {
+  margin: 1%;
+  text-decoration: none;
+  display: inline-block;
 }
 .link:hover {
   text-decoration: none;
@@ -97,5 +107,16 @@ main {
   align-items: center;
   background-color: black;
   font-size: large;
+}
+@media screen and (max-width: 830px) {
+  .header .nav{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  main{
+    padding-bottom: 10px;
+  }
 }
 </style>

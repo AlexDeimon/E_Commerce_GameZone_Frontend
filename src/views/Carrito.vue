@@ -233,8 +233,7 @@ h3{
 }
 .cardProduct2 {
     display: grid;
-    grid-template-columns: 70% 30%;
-    gap: 10px;
+    grid-template-columns: 60% 40%;
     background: rgba(0, 0, 0, 0.651);
     color: white;
     margin-bottom: 10px;
@@ -257,7 +256,33 @@ h3{
     background-color: #007bff;
     color: white;
 }
-@media all and (min-width: 580px){
+.cardProduct2 .btn-crud{
+    width: 140px;
+    margin-left: 10px;
+}
+.cardProduct2 .btn-crud .text{
+  transform: translateX(-24px);
+  white-space: pre-wrap;
+}
+.cardProduct2 .btn-crud .icon {
+    position: absolute;
+    border-left: 1px solid;
+    transform: translateX(75px);
+    height: 40px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cardProduct2 .btn-crud:hover .text {
+    color: transparent;
+}
+.cardProduct2 .btn-crud:hover .icon {
+    width: 110px;
+    border-left: none;
+    transform: translateX(0);
+}
+@media all and (min-width: 830px){
     .contenedor3{
         grid-template-columns: 50% 40%;
         gap: 100px;
