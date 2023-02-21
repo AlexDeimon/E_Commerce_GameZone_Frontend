@@ -95,6 +95,7 @@ import Swal from 'sweetalert2'
 import { storage } from '../firebase';
 import { ref, getDownloadURL} from 'firebase/storage';
 export default defineComponent({
+    // eslint-disable-next-line vue/multi-word-component-names
     name: "Carrito",
     data: function(){
         return{
@@ -134,7 +135,7 @@ export default defineComponent({
     },
     methods: {
         searchCarrito(){
-            axios.get("https://gamezone-e-commerce-backend.herokuapp.com/verCarrito/" + sessionStorage.getItem("carritoActual")).then((response) => {
+            axios.get("https://ecommercebackend-production-2c76.up.railway.app/verCarrito/" + sessionStorage.getItem("carritoActual")).then((response) => {
                 this.carrito = response.data;
                 this.carrito.productos.map((product) => {
                     getDownloadURL(ref(storage, 'imagenes/'+product.id)).then((url) => {
@@ -156,11 +157,11 @@ export default defineComponent({
         newCompra(){
             var cliente = this.cliente;
             var carrito = this.carrito
-            axios.post("https://gamezone-e-commerce-backend.herokuapp.com/nuevoCliente/"+ cliente.idCliente +"/"+ carrito.id, cliente).then(() => {
+            axios.post("https://ecommercebackend-production-2c76.up.railway.app/nuevoCliente/"+ cliente.idCliente +"/"+ carrito.id, cliente).then(() => {
                 var compra = this.compra;
                 var nuevaFecha = new Date();
                 compra.fecha = `${nuevaFecha}`
-                axios.post("https://gamezone-e-commerce-backend.herokuapp.com/agregarCompra/"+ (Math.random().toString(10).slice(-4)).toString() +"/"+ cliente.idCliente, compra).then((response) => {
+                axios.post("https://ecommercebackend-production-2c76.up.railway.app/agregarCompra/"+ (Math.random().toString(10).slice(-4)).toString() +"/"+ cliente.idCliente, compra).then((response) => {
                     this
                     console.log(response, compra);
                     Swal.fire({
@@ -184,7 +185,7 @@ export default defineComponent({
             });
         },
         removeProduct(product){
-            axios.put("https://gamezone-e-commerce-backend.herokuapp.com/borrarProducto/" + this.carrito.id +"/"+ product.producto).then((response) => {
+            axios.put("https://ecommercebackend-production-2c76.up.railway.app/borrarProducto/" + this.carrito.id +"/"+ product.producto).then((response) => {
                 this
                 console.log(response);
                 Swal.fire({

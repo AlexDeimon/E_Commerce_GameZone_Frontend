@@ -1,17 +1,17 @@
-import { initializeApp } from 'firebase/app';
-import { getStorage } from "firebase/storage"
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBmLPqr8cO6zKz5d1QSwdM9kEz39lF8kbg",
-    authDomain: "project-ing-web.firebaseapp.com",
-    databaseURL: "https://project-ing-web-default-rtdb.firebaseio.com",
-    projectId: "project-ing-web",
-    storageBucket: "project-ing-web.appspot.com",
-    messagingSenderId: "457873148937",
-    appId: "1:457873148937:web:8394be3a50345888ddbcd8",
-    measurementId: "G-0JCR01HL96"
+  apiKey: "AIzaSyC5OPFxsHr-jNMWtTck-V_tiJyAfKJ00Uk",
+  authDomain: "gamezone-e-comemerce.firebaseapp.com",
+  databaseURL: "https://gamezone-e-comemerce-default-rtdb.firebaseio.com",
+  projectId: "gamezone-e-comemerce",
+  storageBucket: "gamezone-e-comemerce.appspot.com",
+  messagingSenderId: "470844700571",
+  appId: "1:470844700571:web:3f2a71f8c50c2a1fb4933e"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 

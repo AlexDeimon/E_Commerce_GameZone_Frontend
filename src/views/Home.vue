@@ -39,13 +39,14 @@
 </template>
 <script>
 import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
+import 'vue-loading-overlay/dist/css/index.css';
 import Swal from 'sweetalert2';
 import { defineComponent } from 'vue';
 import axios from 'axios';
 import { storage } from '../firebase';
 import { ref, getDownloadURL} from 'firebase/storage';
 export default defineComponent({
+  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Home',
   components: {
     Loading
@@ -77,7 +78,7 @@ export default defineComponent({
   methods: {
     async allProducts(){
       this.productList = [];
-      await axios.get("https://gamezone-e-commerce-backend.herokuapp.com/verProductos").then((response) => {
+      await axios.get("https://ecommercebackend-production-2c76.up.railway.app/verProductos").then((response) => {
         this.productList = response.data;
         this.productList.map((product) => {
           product.cantidadCarrito = 0;
@@ -93,7 +94,7 @@ export default defineComponent({
       this.isLoading = false;
     },
     createCarrito(){
-      axios.post("https://gamezone-e-commerce-backend.herokuapp.com/crearCarrito/" + (Math.random().toString(10).slice(-4)).toString(), this.carrito).then((response) => {
+      axios.post("https://ecommercebackend-production-2c76.up.railway.app/crearCarrito/" + (Math.random().toString(10).slice(-4)).toString(), this.carrito).then((response) => {
         this.carrito = response.data;
         sessionStorage.setItem("carritoActual",this.carrito.id)
         console.log('carrito actual '+ sessionStorage.getItem("carritoActual"))
@@ -102,7 +103,7 @@ export default defineComponent({
       });
     },
     addProduct(product){
-      axios.put("https://gamezone-e-commerce-backend.herokuapp.com/añadirProducto/" + sessionStorage.getItem("carritoActual") +"/"+ product.producto +"/"+ product.cantidadCarrito).then((response) => {
+      axios.put("https://ecommercebackend-production-2c76.up.railway.app/añadirProducto/" + sessionStorage.getItem("carritoActual") +"/"+ product.producto +"/"+ product.cantidadCarrito).then((response) => {
         this
         console.log(response, this.carrito);
         Swal.fire({
@@ -119,7 +120,7 @@ export default defineComponent({
     },
     goCarrito(){
       let carrito = sessionStorage.getItem("carritoActual");
-      axios.get("https://gamezone-e-commerce-backend.herokuapp.com/verCarrito/" + sessionStorage.getItem("carritoActual")).then((response) => {
+      axios.get("https://ecommercebackend-production-2c76.up.railway.app/verCarrito/" + sessionStorage.getItem("carritoActual")).then((response) => {
         carrito = response.data;
         if(carrito.cantidad_productos == 0){
           Swal.fire({

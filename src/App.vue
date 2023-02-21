@@ -4,7 +4,7 @@
       <Logo/>
     </nav>  
     <ul class="nav-menu">
-      <a href="https://gamezone-ms-app.herokuapp.com/" class="btn btn-crud nav-menu_button link"><span class="text">Sistema de gestión</span><span class="icon"><i class="fas fa-user"></i></span></a>
+      <a href="https://gamezone-ms.web.app" class="btn btn-crud nav-menu_button link"><span class="text">Sistema de gestión</span><span class="icon"><i class="fas fa-user"></i></span></a>
     </ul>
   </header>
   <main>
